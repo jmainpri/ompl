@@ -58,6 +58,10 @@ namespace ompl
             {
             }
 
+            void setSeed(boost::uint32_t seed) {
+                rng_.setSeed(seed);
+            }
+
             virtual void sampleUniform(State *state);
             /** \brief Sample a state such that each component state[i] is
                 uniformly sampled from [near[i]-distance, near[i]+distance].
@@ -113,6 +117,10 @@ namespace ompl
 
             virtual ~RealVectorStateSpace()
             {
+            }
+
+            void setSeed(boost::uint32_t seed) {
+                seed_ = seed;
             }
 
             /** \brief Increase the dimensionality of the state space by 1. Optionally, bounds can be specified for this added dimension. setup() will need to be called after adding dimensions. */
@@ -203,6 +211,7 @@ namespace ompl
 
             /** \brief The size of a state, in bytes */
             std::size_t                         stateBytes_;
+            boost::uint32_t                     seed_;
 
         };
     }

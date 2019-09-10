@@ -271,7 +271,10 @@ void ompl::base::RealVectorStateSpace::interpolate(const State *from, const Stat
 
 ompl::base::StateSamplerPtr ompl::base::RealVectorStateSpace::allocDefaultStateSampler() const
 {
-    return StateSamplerPtr(new RealVectorStateSampler(this));
+    RealVectorStateSampler* ptr  = new RealVectorStateSampler(this);
+    ptr->setSeed(seed_);
+    std::cout << " OMPL RRT seed : " << seed_ << std::endl; 
+    return StateSamplerPtr(ptr);
 }
 
 ompl::base::State* ompl::base::RealVectorStateSpace::allocState() const
